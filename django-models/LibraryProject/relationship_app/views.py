@@ -5,7 +5,7 @@ from relationship_app.models import book
 
 def list_books(request):
     """Function-based view that returns all books and their authors as plain text"""
-    books = Book.objects.get('author').all()
+    books = Book.objects.all()
     return render(request, 'relationship_app/book_list.html', {'books': books})
     
 class LibraryDetailView(DetailView):
