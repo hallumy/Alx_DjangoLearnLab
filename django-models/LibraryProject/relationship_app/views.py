@@ -22,11 +22,11 @@ class LibraryDetailView(DetailView):
         context["books"] = self.object.books.select_related('author').all()
         return context
 
-class CustomLoginView(LoginView):
+class LoginView(LoginView):
     template_name = 'relationship_app/login.html'
 
 # Built-in LogoutView
-class CustomLogoutView(LogoutView):
+class LogoutView(LogoutView):
     template_name = 'relationship_app/logout.html'
 
 # Custom register view using built-in form
