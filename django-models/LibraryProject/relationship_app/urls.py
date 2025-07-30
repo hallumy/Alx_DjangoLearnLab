@@ -5,7 +5,7 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('', views.list_books, name='list_books'),                 # Function-based view
     path('', LibraryDetailView.as_view(), name='library_detail'),  # Class-based view
-    path('login/', LoginView.as_view(), template_name='relationship_app/login.html'),
-    path('logout/', LogoutView.as_view(), template_name='relationship_app/logout.html'),
-    path('register/', views.register_view, template_name='relationship_app/register.html'),
+    path('login/', LoginView.as_view(template_name='relationship_app/login.html'), name='login'),
+    path('logout/', LogoutView.as_view(template_name='relationship_app/logout.html'), name='logout'),
+    path('register/', views.register_view(template_name='relationship_app/register.html'), name='register'),
 ]
