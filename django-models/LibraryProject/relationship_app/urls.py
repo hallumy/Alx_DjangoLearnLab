@@ -7,5 +7,5 @@ urlpatterns = [
     path('', LibraryDetailView.as_view(), name='library_detail'),  # Class-based view
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', CustomLogoutView.as_view(), name='logout'),
-    path('register/', register_view, name='register'),
+    path('register/', views.register_view, name='register'),
 ]
