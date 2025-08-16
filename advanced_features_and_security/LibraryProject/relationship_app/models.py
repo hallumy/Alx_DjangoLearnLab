@@ -1,6 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User, AbstractUser
-
+from django.contrib.auth.models import User, BaseUserManager, AbstractUser
+from django.conf import settings
 # Create your models here.
 class Author(models.Model):
     name = models.CharField(max_length=100)
@@ -43,7 +43,7 @@ class UserProfile(models.Model):
         ('Member', 'Member'),
     ]
     
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='profile')
     role = models.CharField(max_length=50)
     
     def __str__(self):
@@ -53,7 +53,7 @@ class CustomUser(AbstractUser):
     date_of_birth = models.DateField(blank=True)
     profile_photo = models.ImageField(upload_to='profile_images/', blank=True)
     
-    def __str_(self):
+    def __str__(self):
         return self.username
 
 class MyUserManager(BaseUserManager):
@@ -84,6 +84,6 @@ class MyUserManager(BaseUserManager):
             password=password,
             date_of_birth=date_of_birth,
         )
-        user.is_admin = True
+        user.is_staff = True
         user.save(using=self._db)
         return user
